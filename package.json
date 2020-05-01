@@ -28,7 +28,8 @@
     "opn": "^5.3.0",
     "subscriptions-transport-ws": "^0.9.13",
     "terminal-kit": "^1.19.2",
-    "ws": "^6.0.0"
+    "ws": "^6.0.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
@@ -59,10 +60,12 @@
     "eslintfix": "eslint . --fix",
     "build-graphiql": "cd src/graphiql/app && npm install && npm run build",
     "posttest": "npm run eslint",
-    "prepublish": "npm run build-graphiql",
-    "test": "node test/index.test.js && node test/clearstate.test.js"
+    "prepublish": "npm run snyk-protect && npm run build-graphiql",
+    "test": "node test/index.test.js && node test/clearstate.test.js",
+    "snyk-protect": "snyk protect"
   },
   "pre-commit": [
     "eslintfix"
-  ]
+  ],
+  "snyk": true
 }
